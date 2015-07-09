@@ -19,6 +19,7 @@ class HmdTest < ActiveSupport::TestCase
 
     assert_equal "released", hmds(:dk2).state, "The state was not updated correctly"
     assert_equal count+1, HmdState.count, "There was no state added to the HmdState table"
+    assert_equal "released", HmdState.where(["hmd_id = ?", test_hmd]).last.state
   end
 
  	#  test "should not save article without title" do

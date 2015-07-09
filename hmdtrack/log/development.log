@@ -2482,3 +2482,33 @@ ORDER BY c.conname
   [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
   [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
   [1m[35m (8.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36m (222.1ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_test"[0m
+  [1m[35m (533.0ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (49.0ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (75.0ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "state" character varying(64) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (41.8ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.3ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36m (224.0ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_test"[0m
+  [1m[35m (516.4ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (40.1ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (73.7ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "state" character varying(64) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (34.7ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.3ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36m (220.2ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_test"[0m
+  [1m[35m (533.1ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (49.6ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (73.7ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "state" character varying(64) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (42.3ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.5ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')

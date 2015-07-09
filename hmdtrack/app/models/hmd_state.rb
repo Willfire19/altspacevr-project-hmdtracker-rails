@@ -3,4 +3,7 @@ class HmdState < ActiveRecord::Base
   # include AuditedState
   # 
   # is_audited_state_for :hmd
+
+  belongs_to :hmd
+
 end
