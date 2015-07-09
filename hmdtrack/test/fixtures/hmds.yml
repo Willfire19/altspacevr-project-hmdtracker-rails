@@ -8,7 +8,7 @@ dk2:
   id: 1
   name: Rift DK2
   company: Oculus VR
-  state: announced
+  # state: announced
   announced_at: <%= DateTime.new(2014, 3, 4) %>
   image_url: http://i.imgur.com/awh0Yii.jpg
   created_at: <%= DateTime.now() %>

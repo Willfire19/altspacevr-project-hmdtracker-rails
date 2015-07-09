@@ -2512,3 +2512,391 @@ ORDER BY c.conname
   [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
   [1m[36m (7.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
   [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RemoveStateFromHmd (20150709181555)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (123.5ms)[0m  [1mALTER TABLE "hmds" DROP "state"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150709181555"]]
+  [1m[36m (9.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'hmd_states'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'hmds'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (244.3ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_test"[0m
+  [1m[35m (1016.5ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (49.1ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (82.0ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (49.8ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.1ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150709181555')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36m (8.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to RemoveStateFromHmd (20150709181555)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (21.5ms)[0m  ALTER TABLE "hmds" ADD "state" character varying
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20150709181555"]]
+  [1m[35m (17.9ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'hmd_states'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'hmds'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36m (220.3ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_development"[0m
+  [1m[35m (222.3ms)[0m  DROP DATABASE IF EXISTS "hmdtrack_test"
+  [1m[36m (532.8ms)[0m  [1mCREATE DATABASE "hmdtrack_development" ENCODING = 'unicode'[0m
+  [1m[35m (537.2ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (55.9ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (82.4ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (40.2ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.1ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (45.1ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (73.7ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (40.4ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.4ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36m (619.7ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_development"[0m
+  [1m[35m (222.9ms)[0m  DROP DATABASE IF EXISTS "hmdtrack_test"
+  [1m[36m (763.0ms)[0m  [1mCREATE DATABASE "hmdtrack_development" ENCODING = 'unicode'[0m
+  [1m[35m (514.5ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (42.3ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (82.0ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (40.8ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.3ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (49.3ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (90.4ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (41.0ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.4ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36m (718.8ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_development"[0m
+  [1m[35m (222.5ms)[0m  DROP DATABASE IF EXISTS "hmdtrack_test"
+  [1m[36m (555.3ms)[0m  [1mCREATE DATABASE "hmdtrack_development" ENCODING = 'unicode'[0m
+  [1m[35m (521.4ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (48.7ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (81.9ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (42.0ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.3ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (43.2ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (65.4ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (48.8ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.2ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift DK1"], ["company", "Oculus VR"], ["announced_at", "2012-08-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/EY3KHSz.jpg"], ["created_at", "2015-07-09 18:59:53.457094"], ["updated_at", "2015-07-09 18:59:53.457094"]]
+  [1m[35m (7.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Rift DK2"], ["company", "Oculus VR"], ["announced_at", "2014-03-04 00:00:00.000000"], ["image_url", "http://i.imgur.com/awhOYii.jpg"], ["created_at", "2015-07-09 18:59:53.470467"], ["updated_at", "2015-07-09 18:59:53.470467"]]
+  [1m[36m (5.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift CV1"], ["company", "Oculus VR"], ["announced_at", "2015-05-18 00:00:00.000000"], ["image_url", "http://i.imgur.com/Nw077of.jpg"], ["created_at", "2015-07-09 18:59:53.478595"], ["updated_at", "2015-07-09 18:59:53.478595"]]
+  [1m[35m (6.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Gear VR Innovator Edition"], ["company", "Oculus/Samsung"], ["announced_at", "2014-09-03 00:00:00.000000"], ["image_url", "http://i.imgur.com/K1kUWVc.png"], ["created_at", "2015-07-09 18:59:53.486923"], ["updated_at", "2015-07-09 18:59:53.486923"]]
+  [1m[36m (5.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "OSVR"], ["company", "Razer"], ["announced_at", "2015-01-05 00:00:00.000000"], ["image_url", "http://i.imgur.com/QSo3WHu.jpg"], ["created_at", "2015-07-09 18:59:53.495506"], ["updated_at", "2015-07-09 18:59:53.495506"]]
+  [1m[35m (5.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Vive"], ["company", "Valve/HTC"], ["announced_at", "2015-03-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/fuvkUTB.jpg"], ["created_at", "2015-07-09 18:59:53.503861"], ["updated_at", "2015-07-09 18:59:53.503861"]]
+  [1m[36m (5.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "3D Head"], ["company", "Anakando Media Group"], ["announced_at", "2015-03-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/npqEWje.jpg"], ["created_at", "2015-07-09 18:59:53.512107"], ["updated_at", "2015-07-09 18:59:53.512107"]]
+  [1m[35m (5.5ms)[0m  COMMIT
+  [1m[36m (717.4ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_development"[0m
+  [1m[35m (221.6ms)[0m  DROP DATABASE IF EXISTS "hmdtrack_test"
+  [1m[36m (572.5ms)[0m  [1mCREATE DATABASE "hmdtrack_development" ENCODING = 'unicode'[0m
+  [1m[35m (537.8ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (43.5ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (82.1ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (49.4ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (55.3ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (59.6ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (81.9ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (48.8ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.2ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36m (621.2ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_development"[0m
+  [1m[35m (223.8ms)[0m  DROP DATABASE IF EXISTS "hmdtrack_test"
+  [1m[36m (571.9ms)[0m  [1mCREATE DATABASE "hmdtrack_development" ENCODING = 'unicode'[0m
+  [1m[35m (538.1ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (84.5ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (73.5ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (82.4ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.0ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (42.8ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (73.6ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (40.3ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (39.0ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36m (123.9ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_development"[0m
+  [1m[35m (221.8ms)[0m  DROP DATABASE IF EXISTS "hmdtrack_test"
+  [1m[36m (529.2ms)[0m  [1mCREATE DATABASE "hmdtrack_development" ENCODING = 'unicode'[0m
+  [1m[35m (555.6ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (42.3ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (73.6ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (34.9ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.4ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (50.9ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (82.0ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (48.7ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.6ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (6.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift DK1"], ["company", "Oculus VR"], ["announced_at", "2012-08-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/EY3KHSz.jpg"], ["created_at", "2015-07-09 19:08:49.896735"], ["updated_at", "2015-07-09 19:08:49.896735"]]
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-09 19:08:49.923372"], ["updated_at", "2015-07-09 19:08:49.923372"]]
+  [1m[36m (9.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift DK2"], ["company", "Oculus VR"], ["announced_at", "2014-03-04 00:00:00.000000"], ["image_url", "http://i.imgur.com/awhOYii.jpg"], ["created_at", "2015-07-09 19:08:49.935706"], ["updated_at", "2015-07-09 19:08:49.935706"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 2], ["created_at", "2015-07-09 19:08:49.937735"], ["updated_at", "2015-07-09 19:08:49.937735"]]
+  [1m[36m (4.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift CV1"], ["company", "Oculus VR"], ["announced_at", "2015-05-18 00:00:00.000000"], ["image_url", "http://i.imgur.com/Nw077of.jpg"], ["created_at", "2015-07-09 19:08:49.943964"], ["updated_at", "2015-07-09 19:08:49.943964"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 3], ["created_at", "2015-07-09 19:08:49.945857"], ["updated_at", "2015-07-09 19:08:49.945857"]]
+  [1m[36m (4.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gear VR Innovator Edition"], ["company", "Oculus/Samsung"], ["announced_at", "2014-09-03 00:00:00.000000"], ["image_url", "http://i.imgur.com/K1kUWVc.png"], ["created_at", "2015-07-09 19:08:49.952142"], ["updated_at", "2015-07-09 19:08:49.952142"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 4], ["created_at", "2015-07-09 19:08:49.954030"], ["updated_at", "2015-07-09 19:08:49.954030"]]
+  [1m[36m (4.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "OSVR"], ["company", "Razer"], ["announced_at", "2015-01-05 00:00:00.000000"], ["image_url", "http://i.imgur.com/QSo3WHu.jpg"], ["created_at", "2015-07-09 19:08:49.960624"], ["updated_at", "2015-07-09 19:08:49.960624"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "devkit"], ["hmd_id", 5], ["created_at", "2015-07-09 19:08:49.962507"], ["updated_at", "2015-07-09 19:08:49.962507"]]
+  [1m[36m (4.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Vive"], ["company", "Valve/HTC"], ["announced_at", "2015-03-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/fuvkUTB.jpg"], ["created_at", "2015-07-09 19:08:49.968944"], ["updated_at", "2015-07-09 19:08:49.968944"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 6], ["created_at", "2015-07-09 19:08:49.970689"], ["updated_at", "2015-07-09 19:08:49.970689"]]
+  [1m[36m (4.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "3D Head"], ["company", "Anakando Media Group"], ["announced_at", "2015-03-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/npqEWje.jpg"], ["created_at", "2015-07-09 19:08:49.977266"], ["updated_at", "2015-07-09 19:08:49.977266"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "devkit"], ["hmd_id", 7], ["created_at", "2015-07-09 19:08:49.979066"], ["updated_at", "2015-07-09 19:08:49.979066"]]
+  [1m[36m (4.5ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift DK1"], ["company", "Oculus VR"], ["announced_at", "2012-08-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/EY3KHSz.jpg"], ["created_at", "2015-07-09 19:16:05.267376"], ["updated_at", "2015-07-09 19:16:05.267376"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 8], ["created_at", "2015-07-09 19:16:05.326291"], ["updated_at", "2015-07-09 19:16:05.326291"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift DK2"], ["company", "Oculus VR"], ["announced_at", "2014-03-04 00:00:00.000000"], ["image_url", "http://i.imgur.com/awhOYii.jpg"], ["created_at", "2015-07-09 19:16:05.335326"], ["updated_at", "2015-07-09 19:16:05.335326"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 9], ["created_at", "2015-07-09 19:16:05.337290"], ["updated_at", "2015-07-09 19:16:05.337290"]]
+  [1m[36m (4.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift CV1"], ["company", "Oculus VR"], ["announced_at", "2015-05-18 00:00:00.000000"], ["image_url", "http://i.imgur.com/Nw077of.jpg"], ["created_at", "2015-07-09 19:16:05.343624"], ["updated_at", "2015-07-09 19:16:05.343624"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 10], ["created_at", "2015-07-09 19:16:05.346118"], ["updated_at", "2015-07-09 19:16:05.346118"]]
+  [1m[36m (3.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gear VR Innovator Edition"], ["company", "Oculus/Samsung"], ["announced_at", "2014-09-03 00:00:00.000000"], ["image_url", "http://i.imgur.com/K1kUWVc.png"], ["created_at", "2015-07-09 19:16:05.352153"], ["updated_at", "2015-07-09 19:16:05.352153"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 11], ["created_at", "2015-07-09 19:16:05.354781"], ["updated_at", "2015-07-09 19:16:05.354781"]]
+  [1m[36m (2.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "OSVR"], ["company", "Razer"], ["announced_at", "2015-01-05 00:00:00.000000"], ["image_url", "http://i.imgur.com/QSo3WHu.jpg"], ["created_at", "2015-07-09 19:16:05.360358"], ["updated_at", "2015-07-09 19:16:05.360358"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "devkit"], ["hmd_id", 12], ["created_at", "2015-07-09 19:16:05.362821"], ["updated_at", "2015-07-09 19:16:05.362821"]]
+  [1m[36m (3.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Vive"], ["company", "Valve/HTC"], ["announced_at", "2015-03-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/fuvkUTB.jpg"], ["created_at", "2015-07-09 19:16:05.368561"], ["updated_at", "2015-07-09 19:16:05.368561"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 13], ["created_at", "2015-07-09 19:16:05.370763"], ["updated_at", "2015-07-09 19:16:05.370763"]]
+  [1m[36m (3.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "3D Head"], ["company", "Anakando Media Group"], ["announced_at", "2015-03-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/npqEWje.jpg"], ["created_at", "2015-07-09 19:16:05.377046"], ["updated_at", "2015-07-09 19:16:05.377046"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "devkit"], ["hmd_id", 14], ["created_at", "2015-07-09 19:16:05.379324"], ["updated_at", "2015-07-09 19:16:05.379324"]]
+  [1m[36m (3.3ms)[0m  [1mCOMMIT[0m
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "hmds"[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (224.6ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_development"[0m
+  [1m[35m (223.2ms)[0m  DROP DATABASE IF EXISTS "hmdtrack_test"
+  [1m[36m (555.1ms)[0m  [1mCREATE DATABASE "hmdtrack_development" ENCODING = 'unicode'[0m
+  [1m[35m (554.9ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (42.6ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (73.7ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (48.6ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (47.1ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (50.9ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (81.7ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "state" character varying) [0m
+  [1m[35m (40.4ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (39.1ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift DK1"], ["company", "Oculus VR"], ["announced_at", "2012-08-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/EY3KHSz.jpg"], ["created_at", "2015-07-09 19:19:14.459492"], ["updated_at", "2015-07-09 19:19:14.459492"]]
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-09 19:19:14.486955"], ["updated_at", "2015-07-09 19:19:14.486955"]]
+  [1m[36m (2.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift DK2"], ["company", "Oculus VR"], ["announced_at", "2014-03-04 00:00:00.000000"], ["image_url", "http://i.imgur.com/awhOYii.jpg"], ["created_at", "2015-07-09 19:19:14.492543"], ["updated_at", "2015-07-09 19:19:14.492543"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 2], ["created_at", "2015-07-09 19:19:14.494633"], ["updated_at", "2015-07-09 19:19:14.494633"]]
+  [1m[36m (3.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rift CV1"], ["company", "Oculus VR"], ["announced_at", "2015-05-18 00:00:00.000000"], ["image_url", "http://i.imgur.com/Nw077of.jpg"], ["created_at", "2015-07-09 19:19:14.500683"], ["updated_at", "2015-07-09 19:19:14.500683"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 3], ["created_at", "2015-07-09 19:19:14.502592"], ["updated_at", "2015-07-09 19:19:14.502592"]]
+  [1m[36m (4.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gear VR Innovator Edition"], ["company", "Oculus/Samsung"], ["announced_at", "2014-09-03 00:00:00.000000"], ["image_url", "http://i.imgur.com/K1kUWVc.png"], ["created_at", "2015-07-09 19:19:14.508870"], ["updated_at", "2015-07-09 19:19:14.508870"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 4], ["created_at", "2015-07-09 19:19:14.510659"], ["updated_at", "2015-07-09 19:19:14.510659"]]
+  [1m[36m (4.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "OSVR"], ["company", "Razer"], ["announced_at", "2015-01-05 00:00:00.000000"], ["image_url", "http://i.imgur.com/QSo3WHu.jpg"], ["created_at", "2015-07-09 19:19:14.517317"], ["updated_at", "2015-07-09 19:19:14.517317"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "devkit"], ["hmd_id", 5], ["created_at", "2015-07-09 19:19:14.519228"], ["updated_at", "2015-07-09 19:19:14.519228"]]
+  [1m[36m (4.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Vive"], ["company", "Valve/HTC"], ["announced_at", "2015-03-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/fuvkUTB.jpg"], ["created_at", "2015-07-09 19:19:14.525664"], ["updated_at", "2015-07-09 19:19:14.525664"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 6], ["created_at", "2015-07-09 19:19:14.527563"], ["updated_at", "2015-07-09 19:19:14.527563"]]
+  [1m[36m (4.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "3D Head"], ["company", "Anakando Media Group"], ["announced_at", "2015-03-01 00:00:00.000000"], ["image_url", "http://i.imgur.com/npqEWje.jpg"], ["created_at", "2015-07-09 19:19:14.533988"], ["updated_at", "2015-07-09 19:19:14.533988"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "devkit"], ["hmd_id", 7], ["created_at", "2015-07-09 19:19:14.535846"], ["updated_at", "2015-07-09 19:19:14.535846"]]
+  [1m[36m (4.3ms)[0m  [1mCOMMIT[0m
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "hmds"[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RemoveStateFromHmd (20150709202701)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "hmds" DROP "state"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150709202701"]]
+  [1m[36m (9.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'hmd_states'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'hmds'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (216.4ms)[0m  [1mDROP DATABASE IF EXISTS "hmdtrack_test"[0m
+  [1m[35m (541.5ms)[0m  CREATE DATABASE "hmdtrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (82.9ms)[0m  CREATE TABLE "hmd_states" ("id" serial primary key, "hmd_id" integer NOT NULL, "state" character varying(64) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (182.3ms)[0m  [1mCREATE TABLE "hmds" ("id" serial primary key, "name" character varying(512) NOT NULL, "company" character varying(512) NOT NULL, "image_url" character varying(512) NOT NULL, "announced_at" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (42.9ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (55.6ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150709202701')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528233405')
+  [1m[36m (8.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150528235540')[0m

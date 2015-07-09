@@ -4,9 +4,28 @@ class Hmd < ActiveRecord::Base
   #
   # has_audited_state_through :hmd_states, [:announced, :devkit, :released]
 
-  before_save :create_new_state
+  after_save :create_new_state
 
   has_many :hmd_states
+
+  validate :check_state
+
+  def state=(new_state)
+    @state = new_state
+  end
+
+  def state
+    @state
+  end
+
+  def check_state
+    if @state != "announced" and @state != "dev_kit" and @state != "released"
+      errors.add(:base, "#{@state} is not a valid state")
+      return false
+    else
+      return true
+    end
+  end
 
   private
 
