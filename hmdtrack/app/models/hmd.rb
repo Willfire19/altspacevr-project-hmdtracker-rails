@@ -11,7 +11,7 @@ class Hmd < ActiveRecord::Base
   private
 
   	def create_new_state
-  		@new_hmd_state = self.hmd_states.build( state: "announced" )
+  		@new_hmd_state = self.hmd_states.build( state: state )
   		@new_hmd_state.save
   	end
 
