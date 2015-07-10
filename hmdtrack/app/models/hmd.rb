@@ -4,6 +4,7 @@ class Hmd < ActiveRecord::Base
   #
   # has_audited_state_through :hmd_states, [:announced, :devkit, :released]
 
+  after_initialize :assign_state_default, if: 'new_record?'
   after_save :create_new_state
 
   has_many :hmd_states
@@ -37,19 +38,15 @@ class Hmd < ActiveRecord::Base
     end
   end
 
-  def state_valid(new_state)
-    if new_state != "announced" and new_state != "dev_kit" and new_state != "released"
-      return false
-    else
-      return true
-    end
-  end 
-
   private
 
   	def create_new_state
   		@new_hmd_state = self.hmd_states.build( state: state )
   		@new_hmd_state.save
   	end
+
+    def assign_state_default
+      @state = "announced"
+    end
 
 end

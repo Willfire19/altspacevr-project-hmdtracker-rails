@@ -86,4 +86,13 @@ class HmdTest < ActiveSupport::TestCase
 
   end
 
+  test "creating an hmd will have state as announced by default" do
+    count = HmdState.count
+    test_hmd = Hmd.create!( name: "4D HEAD", company: "AngelTech", image_url: "https://i.imgur.com/VHPmc.jpg", announced_at: DateTime.now() )
+
+    assert_equal count+1, HmdState.count, "Creating a hmd did not create a hmd state"
+    assert_equal "announced", HmdState.where(["hmd_id = ?", test_hmd]).last.state, "The default was not applied"
+  end
+
+
 end
