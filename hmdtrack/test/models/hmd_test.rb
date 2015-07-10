@@ -50,29 +50,38 @@ class HmdTest < ActiveSupport::TestCase
 
   end
 
-  test "editting hmd with incorrect state raises validation exception" do
+  # test "editting hmd with incorrect state raises validation exception" do
 
-    assert_raises "bogus state is not a valid state" do
-      test_hmd = hmds(:dk2)
+  #   test_hmd = hmds(:dk2)
+  #   test_hmd.state = "completeley bogus state"
+
+  #   assert_raises(ActiveRecord::RecordInvalid) { test_hmd.save! }
+
+  # end
+  # id: 1
+  # name: Rift DK2
+  # company: Oculus VR
+  # # state: announced
+  # announced_at: <%= DateTime.new(2014, 3, 4) %>
+  # image_url: http://i.imgur.com/awh0Yii.jpg
+  # created_at: <%= DateTime.now() %>
+  # updated_at: <%= DateTime.now() %>
+
+  test "editting hmd with incorrect state should raise validation exception" do
+
+    test_hmd = Hmd.create!( name: "Rad VR", company: "AngelTech", image_url: "https://i.imgur.com/rAfh8.jpg", announced_at: DateTime.now(), state: "announced" )
+    count = HmdState.count
+    previous_state = test_hmd.state
+    assert_raises(ActiveRecord::RecordInvalid) do
       test_hmd.state = "completeley bogus state"
       test_hmd.save!
     end
 
-  end
-
-  test "editting hmd with incorrect state should raise validation exception" do
-    count = HmdState.count
-
-    test_hmd = hmds(:dk2)
-    previous_state = test_hmd.state
-    test_hmd.state = "completeley bogus state"
-    test_hmd.save!
-
-    assert_not_equal "completeley bogus state", hmds(:dk2).state, "The state was updated when it should have failed"
+    assert_not_equal "completeley bogus state", test_hmd.state, "The state was updated when it should have failed"
     assert_not_equal count+1, HmdState.count, "A bogus state was added to the HmdState table"
     assert_not_equal "completeley bogus state", HmdState.where(["hmd_id = ?", test_hmd]).last.state
 
-    assert_equal previous_state, hmds(:dk2).state, "The current state is not the same as the previous state"
+    assert_equal previous_state, test_hmd.state, "The current state is not the same as the previous state"
     assert_equal previous_state, HmdState.where(["hmd_id = ?", test_hmd]).last.state
 
   end

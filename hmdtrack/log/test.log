@@ -1335,3 +1335,1972 @@ HmdTest: test_editting_hmd_should_add_to_hmd_state
   [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
   [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (16.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (27.6ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (17.1ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 16:58:50.000000', '2015-07-10 16:58:50.000000')[0m
+  [1m[35mFixture Delete (12.1ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 16:58:50.000000', '2015-07-10 16:58:50.000000')[0m
+  [1m[35m (8.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 16:58:51.013793"], ["updated_at", "2015-07-10 16:58:51.013793"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.1ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 16:58:51.053118"], ["updated_at", "2015-07-10 16:58:51.053118"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 16:58:51.056610"], ["updated_at", "2015-07-10 16:58:51.056610"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:14:54.000000', '2015-07-10 17:14:54.000000')[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:14:54.000000', '2015-07-10 17:14:54.000000')[0m
+  [1m[35m (8.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:14:54.101834"], ["updated_at", "2015-07-10 17:14:54.101834"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:14:54.114068"], ["updated_at", "2015-07-10 17:14:54.114068"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:14:54.117189"], ["updated_at", "2015-07-10 17:14:54.117189"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:15:17.000000', '2015-07-10 17:15:17.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:15:17.000000', '2015-07-10 17:15:17.000000')[0m
+  [1m[35m (13.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.1ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:15:17.399398"], ["updated_at", "2015-07-10 17:15:17.399398"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:15:17.403748"], ["updated_at", "2015-07-10 17:15:17.403748"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[35mHmd Load (0.1ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.1ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:15:17.409250"], ["updated_at", "2015-07-10 17:15:17.409250"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:16:05.000000', '2015-07-10 17:16:05.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:16:05.000000', '2015-07-10 17:16:05.000000')[0m
+  [1m[35m (7.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:16:05.518863"], ["updated_at", "2015-07-10 17:16:05.518863"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:16:05.523638"], ["updated_at", "2015-07-10 17:16:05.523638"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:16:05.533350"], ["updated_at", "2015-07-10 17:16:05.533350"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.1ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:18:00.000000', '2015-07-10 17:18:00.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:18:00.000000', '2015-07-10 17:18:00.000000')[0m
+  [1m[35m (12.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:18:00.456123"], ["updated_at", "2015-07-10 17:18:00.456123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:18:00.460778"], ["updated_at", "2015-07-10 17:18:00.460778"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.1ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:18:00.502100"], ["updated_at", "2015-07-10 17:18:00.502100"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:18:31.000000', '2015-07-10 17:18:31.000000')[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:18:31.000000', '2015-07-10 17:18:31.000000')[0m
+  [1m[35m (12.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:18:31.872957"], ["updated_at", "2015-07-10 17:18:31.872957"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.6ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:18:31.879941"], ["updated_at", "2015-07-10 17:18:31.879941"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:18:31.898872"], ["updated_at", "2015-07-10 17:18:31.898872"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:25:07.000000', '2015-07-10 17:25:07.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:25:07.000000', '2015-07-10 17:25:07.000000')[0m
+  [1m[35m (11.3ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:25:07.491013"], ["updated_at", "2015-07-10 17:25:07.491013"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:25:07.497889"], ["updated_at", "2015-07-10 17:25:07.497889"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:25:07.513338"], ["updated_at", "2015-07-10 17:25:07.513338"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:25:20.000000', '2015-07-10 17:25:20.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:25:20.000000', '2015-07-10 17:25:20.000000')[0m
+  [1m[35m (4.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:25:20.300968"], ["updated_at", "2015-07-10 17:25:20.300968"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:25:20.304826"], ["updated_at", "2015-07-10 17:25:20.304826"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.1ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:25:20.309338"], ["updated_at", "2015-07-10 17:25:20.309338"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.1ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:26:07.000000', '2015-07-10 17:26:07.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:26:07.000000', '2015-07-10 17:26:07.000000')[0m
+  [1m[35m (6.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "completeley bogus state"], ["hmd_id", 1], ["created_at", "2015-07-10 17:26:07.190839"], ["updated_at", "2015-07-10 17:26:07.190839"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:26:07.198239"], ["updated_at", "2015-07-10 17:26:07.198239"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.6ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "completeley bogus state"], ["hmd_id", 1], ["created_at", "2015-07-10 17:26:07.204065"], ["updated_at", "2015-07-10 17:26:07.204065"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:26:07.207917"], ["updated_at", "2015-07-10 17:26:07.207917"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:26:07.211518"], ["updated_at", "2015-07-10 17:26:07.211518"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:27:30.000000', '2015-07-10 17:27:30.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:27:30.000000', '2015-07-10 17:27:30.000000')[0m
+  [1m[35m (10.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:27:30.869790"], ["updated_at", "2015-07-10 17:27:30.869790"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.5ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:27:30.878600"], ["updated_at", "2015-07-10 17:27:30.878600"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:27:30.882701"], ["updated_at", "2015-07-10 17:27:30.882701"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "completeley bogus state"], ["hmd_id", 1], ["created_at", "2015-07-10 17:27:30.887849"], ["updated_at", "2015-07-10 17:27:30.887849"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "completeley bogus state"], ["hmd_id", 1], ["created_at", "2015-07-10 17:27:30.892338"], ["updated_at", "2015-07-10 17:27:30.892338"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:28:02.000000', '2015-07-10 17:28:02.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:28:02.000000', '2015-07-10 17:28:02.000000')[0m
+  [1m[35m (12.7ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:28:03.037818"], ["updated_at", "2015-07-10 17:28:03.037818"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.5ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:28:03.061456"], ["updated_at", "2015-07-10 17:28:03.061456"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:28:03.066804"], ["updated_at", "2015-07-10 17:28:03.066804"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:39:02.000000', '2015-07-10 17:39:02.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:39:02.000000', '2015-07-10 17:39:02.000000')[0m
+  [1m[35m (8.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:39:02.776124"], ["updated_at", "2015-07-10 17:39:02.776124"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:39:02.781575"], ["updated_at", "2015-07-10 17:39:02.781575"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:39:02.791763"], ["updated_at", "2015-07-10 17:39:02.791763"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:40:08.000000', '2015-07-10 17:40:08.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:40:08.000000', '2015-07-10 17:40:08.000000')[0m
+  [1m[35m (7.5ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:40:08.965839"], ["updated_at", "2015-07-10 17:40:08.965839"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.4ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:40:08.987459"], ["updated_at", "2015-07-10 17:40:08.987459"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:40:08.992782"], ["updated_at", "2015-07-10 17:40:08.992782"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:43:06.000000', '2015-07-10 17:43:06.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:43:06.000000', '2015-07-10 17:43:06.000000')[0m
+  [1m[35m (13.2ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.4ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:43:06.590013"], ["updated_at", "2015-07-10 17:43:06.590013"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.6ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:43:06.604314"], ["updated_at", "2015-07-10 17:43:06.604314"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:43:06.609442"], ["updated_at", "2015-07-10 17:43:06.609442"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:43:28.000000', '2015-07-10 17:43:28.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:43:28.000000', '2015-07-10 17:43:28.000000')[0m
+  [1m[35m (10.8ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_raises_validation_exception
+---------------------------------------------------------------------------
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:43:28.218476"], ["updated_at", "2015-07-10 17:43:28.218476"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:43:28.223932"], ["updated_at", "2015-07-10 17:43:28.223932"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:43:28.229617"], ["updated_at", "2015-07-10 17:43:28.229617"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:47:32.000000', '2015-07-10 17:47:32.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:47:32.000000', '2015-07-10 17:47:32.000000')[0m
+  [1m[35m (6.0ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:47:32.935093"], ["updated_at", "2015-07-10 17:47:32.935093"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.7ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:47:32.942341"], ["updated_at", "2015-07-10 17:47:32.942341"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.4ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:47:32.949684"], ["updated_at", "2015-07-10 17:47:32.949684"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:50:04.000000', '2015-07-10 17:50:04.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:50:04.000000', '2015-07-10 17:50:04.000000')[0m
+  [1m[35m (10.9ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:50:05.012025"], ["updated_at", "2015-07-10 17:50:05.012025"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.6ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:50:05.021914"], ["updated_at", "2015-07-10 17:50:05.021914"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:50:05.026643"], ["updated_at", "2015-07-10 17:50:05.026643"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:53:09.000000', '2015-07-10 17:53:09.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:53:09.000000', '2015-07-10 17:53:09.000000')[0m
+  [1m[35m (16.9ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:53:09.528465"], ["updated_at", "2015-07-10 17:53:09.528465"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.6ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:53:09.537108"], ["updated_at", "2015-07-10 17:53:09.537108"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:53:09.541579"], ["updated_at", "2015-07-10 17:53:09.541579"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:54:21.000000', '2015-07-10 17:54:21.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:54:21.000000', '2015-07-10 17:54:21.000000')[0m
+  [1m[35m (9.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:54:21.974588"], ["updated_at", "2015-07-10 17:54:21.974588"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.7ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:54:21.980708"], ["updated_at", "2015-07-10 17:54:21.980708"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:54:21.989622"], ["updated_at", "2015-07-10 17:54:21.989622"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 17:54:58.000000', '2015-07-10 17:54:58.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 17:54:58.000000', '2015-07-10 17:54:58.000000')[0m
+  [1m[35m (7.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 17:54:58.293673"], ["updated_at", "2015-07-10 17:54:58.293673"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.5ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 17:54:58.303371"], ["updated_at", "2015-07-10 17:54:58.303371"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 17:54:58.308083"], ["updated_at", "2015-07-10 17:54:58.308083"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 18:02:03.000000', '2015-07-10 18:02:03.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 18:02:03.000000', '2015-07-10 18:02:03.000000')[0m
+  [1m[35m (7.0ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 18:02:03.247770"], ["updated_at", "2015-07-10 18:02:03.247770"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 18:02:03.252890"], ["updated_at", "2015-07-10 18:02:03.252890"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 18:02:03.257617"], ["updated_at", "2015-07-10 18:02:03.257617"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 18:05:36.000000', '2015-07-10 18:05:36.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 18:05:36.000000', '2015-07-10 18:05:36.000000')[0m
+  [1m[35m (9.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 18:05:36.789103"], ["updated_at", "2015-07-10 18:05:36.789103"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 18:05:36.793952"], ["updated_at", "2015-07-10 18:05:36.793952"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 18:05:36.800544"], ["updated_at", "2015-07-10 18:05:36.800544"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 18:12:17.000000', '2015-07-10 18:12:17.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 18:12:17.000000', '2015-07-10 18:12:17.000000')[0m
+  [1m[35m (11.1ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.7ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = NULL)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.4ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 18:12:17.144554"], ["updated_at", "2015-07-10 18:12:17.144554"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 18:12:17.152239"], ["updated_at", "2015-07-10 18:12:17.152239"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 18:12:17.160092"], ["updated_at", "2015-07-10 18:12:17.160092"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 18:12:48.000000', '2015-07-10 18:12:48.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 18:12:48.000000', '2015-07-10 18:12:48.000000')[0m
+  [1m[35m (12.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 18:12:48.375441"], ["updated_at", "2015-07-10 18:12:48.375441"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 18:12:48.380892"], ["updated_at", "2015-07-10 18:12:48.380892"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 18:12:48.385882"], ["updated_at", "2015-07-10 18:12:48.385882"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 18:13:51.000000', '2015-07-10 18:13:51.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 18:13:51.000000', '2015-07-10 18:13:51.000000')[0m
+  [1m[35m (7.7ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.3ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 18:13:51.861985"], ["updated_at", "2015-07-10 18:13:51.861985"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.6ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 18:13:51.873337"], ["updated_at", "2015-07-10 18:13:51.873337"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 18:13:51.877671"], ["updated_at", "2015-07-10 18:13:51.877671"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "hmds" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Rad VR"], ["created_at", "2015-07-10 18:13:51.882840"], ["updated_at", "2015-07-10 18:13:51.882840"]]
+PG::NotNullViolation: ERROR:  null value in column "company" violates not-null constraint
+DETAIL:  Failing row contains (2, Rad VR, null, null, null, 2015-07-10 18:13:51.88284, 2015-07-10 18:13:51.88284).
+: INSERT INTO "hmds" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 18:14:35.000000', '2015-07-10 18:14:35.000000')[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 18:14:35.000000', '2015-07-10 18:14:35.000000')[0m
+  [1m[35m (10.2ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.4ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 18:14:35.638104"], ["updated_at", "2015-07-10 18:14:35.638104"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.7ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.2ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 18:14:35.648469"], ["updated_at", "2015-07-10 18:14:35.648469"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 18:14:35.653538"], ["updated_at", "2015-07-10 18:14:35.653538"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "hmds" ("name", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Rad VR"], ["company", "AngelTech"], ["created_at", "2015-07-10 18:14:35.659104"], ["updated_at", "2015-07-10 18:14:35.659104"]]
+PG::NotNullViolation: ERROR:  null value in column "image_url" violates not-null constraint
+DETAIL:  Failing row contains (2, Rad VR, AngelTech, null, null, 2015-07-10 18:14:35.659104, 2015-07-10 18:14:35.659104).
+: INSERT INTO "hmds" ("name", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 19:07:36.000000', '2015-07-10 19:07:36.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 19:07:36.000000', '2015-07-10 19:07:36.000000')[0m
+  [1m[35m (6.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 19:07:36.568503"], ["updated_at", "2015-07-10 19:07:36.568503"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 19:07:36.573696"], ["updated_at", "2015-07-10 19:07:36.573696"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 19:07:36.578658"], ["updated_at", "2015-07-10 19:07:36.578658"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "hmds" ("name", "company", "image_url", "announced_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Rad VR"], ["company", "AngelTech"], ["image_url", "https://i.imgur.com/rAfh8.jpg"], ["announced_at", "2015-07-10 19:07:36.581601"], ["created_at", "2015-07-10 19:07:36.582063"], ["updated_at", "2015-07-10 19:07:36.582063"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 2], ["created_at", "2015-07-10 19:07:36.583418"], ["updated_at", "2015-07-10 19:07:36.583418"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 2], ["created_at", "2015-07-10 19:07:36.585144"], ["updated_at", "2015-07-10 19:07:36.585144"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 19:09:50.000000', '2015-07-10 19:09:50.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 19:09:50.000000', '2015-07-10 19:09:50.000000')[0m
+  [1m[35m (10.9ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.4ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 19:09:50.480567"], ["updated_at", "2015-07-10 19:09:50.480567"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.7ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.3ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 19:09:50.491345"], ["updated_at", "2015-07-10 19:09:50.491345"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.4ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 19:09:50.497283"], ["updated_at", "2015-07-10 19:09:50.497283"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmds" ("name", "company", "image_url", "announced_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Rad VR"], ["company", "AngelTech"], ["image_url", "https://i.imgur.com/rAfh8.jpg"], ["announced_at", "2015-07-10 19:09:50.503923"], ["created_at", "2015-07-10 19:09:50.504656"], ["updated_at", "2015-07-10 19:09:50.504656"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 2], ["created_at", "2015-07-10 19:09:50.506971"], ["updated_at", "2015-07-10 19:09:50.506971"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 19:10:07.000000', '2015-07-10 19:10:07.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 19:10:07.000000', '2015-07-10 19:10:07.000000')[0m
+  [1m[35m (2.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.1ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 19:22:16.000000', '2015-07-10 19:22:16.000000')[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 19:22:16.000000', '2015-07-10 19:22:16.000000')[0m
+  [1m[35m (7.2ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 19:22:16.495145"], ["updated_at", "2015-07-10 19:22:16.495145"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "hmds" ("name", "company", "image_url", "announced_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Rad VR"], ["company", "AngelTech"], ["image_url", "https://i.imgur.com/rAfh8.jpg"], ["announced_at", "2015-07-10 19:22:16.499454"], ["created_at", "2015-07-10 19:22:16.499964"], ["updated_at", "2015-07-10 19:22:16.499964"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 2], ["created_at", "2015-07-10 19:22:16.501524"], ["updated_at", "2015-07-10 19:22:16.501524"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 19:22:16.509459"], ["updated_at", "2015-07-10 19:22:16.509459"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 19:22:16.512662"], ["updated_at", "2015-07-10 19:22:16.512662"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "hmd_states" DISABLE TRIGGER ALL;ALTER TABLE "hmds" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "hmds"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "hmds" ("id", "name", "company", "announced_at", "image_url", "created_at", "updated_at") VALUES (1, 'Rift DK2', 'Oculus VR', '2014-03-04 00:00:00.000000', 'http://i.imgur.com/awh0Yii.jpg', '2015-07-10 19:23:26.000000', '2015-07-10 19:23:26.000000')[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "hmd_states"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "hmd_states" ("id", "hmd_id", "state", "created_at", "updated_at") VALUES (1, 1, 'announced', '2015-07-10 19:23:26.000000', '2015-07-10 19:23:26.000000')[0m
+  [1m[35m (8.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "hmd_states" ENABLE TRIGGER ALL;ALTER TABLE "hmds" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_incorrect_state_should_raise_validation_exception
+---------------------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "hmds" ("name", "company", "image_url", "announced_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Rad VR"], ["company", "AngelTech"], ["image_url", "https://i.imgur.com/rAfh8.jpg"], ["announced_at", "2015-07-10 19:23:26.071120"], ["created_at", "2015-07-10 19:23:26.078464"], ["updated_at", "2015-07-10 19:23:26.078464"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "announced"], ["hmd_id", 2], ["created_at", "2015-07-10 19:23:26.093506"], ["updated_at", "2015-07-10 19:23:26.093506"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.7ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 2)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35mHmdState Load (0.3ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 2)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------------------------------
+HmdTest: test_editting_hmd_with_correct_state_should_add_to_hmd_state
+---------------------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmd Load (0.2ms)[0m  SELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "dev_kit"], ["hmd_id", 1], ["created_at", "2015-07-10 19:23:26.108615"], ["updated_at", "2015-07-10 19:23:26.108615"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["state", "announced"], ["hmd_id", 1], ["created_at", "2015-07-10 19:23:26.112330"], ["updated_at", "2015-07-10 19:23:26.112330"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+HmdTest: test_editting_hmd_should_add_to_hmd_state
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hmd_states"
+  [1m[36mHmd Load (0.1ms)[0m  [1mSELECT  "hmds".* FROM "hmds" WHERE "hmds"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "hmd_states" ("state", "hmd_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["state", "released"], ["hmd_id", 1], ["created_at", "2015-07-10 19:23:26.116824"], ["updated_at", "2015-07-10 19:23:26.116824"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE (hmd_id = 1)  ORDER BY "hmd_states"."id" DESC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+--------------------------------------------------------
+HmdTest: test_there_should_be_no_state_attribute_for_hmd
+--------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+HmdTest: test_there_should_only_be_one_hmd_state_at_first
+---------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hmd_states"[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK

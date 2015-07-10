@@ -11,6 +11,7 @@ class Hmd < ActiveRecord::Base
   validate :check_state
 
   def state=(new_state)
+    @previous_state = state
     @state = new_state
   end
 
@@ -18,14 +19,31 @@ class Hmd < ActiveRecord::Base
     @state
   end
 
+  def previous_state=(old_state)
+    @previous_state = old_state
+  end
+
+  def previous_state
+    @previous_state
+  end
+
   def check_state
     if @state != "announced" and @state != "dev_kit" and @state != "released"
       errors.add(:base, "#{@state} is not a valid state")
+      @state = previous_state
       return false
     else
       return true
     end
   end
+
+  def state_valid(new_state)
+    if new_state != "announced" and new_state != "dev_kit" and new_state != "released"
+      return false
+    else
+      return true
+    end
+  end 
 
   private
 
