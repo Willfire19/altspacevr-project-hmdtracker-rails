@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class HmdTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 
   test "there should only be one hmd state at first" do
   	assert_equal 1, HmdState.count, "The fixture was not programmed correctly"
@@ -28,7 +25,6 @@ class HmdTest < ActiveSupport::TestCase
 
   test "editting hmd with correct state should add to hmd_state" do
     count = HmdState.count
-    # print count
 
     test_hmd = hmds(:dk2)
     test_hmd.state = "dev_kit"
@@ -39,7 +35,6 @@ class HmdTest < ActiveSupport::TestCase
     assert_equal "dev_kit", HmdState.where(["hmd_id = ?", test_hmd]).last.state
 
     count = HmdState.count
-    # print count
 
     test_hmd.state = "announced"
     test_hmd.save!
@@ -49,23 +44,6 @@ class HmdTest < ActiveSupport::TestCase
     assert_equal "announced", HmdState.where(["hmd_id = ?", test_hmd]).last.state
 
   end
-
-  # test "editting hmd with incorrect state raises validation exception" do
-
-  #   test_hmd = hmds(:dk2)
-  #   test_hmd.state = "completeley bogus state"
-
-  #   assert_raises(ActiveRecord::RecordInvalid) { test_hmd.save! }
-
-  # end
-  # id: 1
-  # name: Rift DK2
-  # company: Oculus VR
-  # # state: announced
-  # announced_at: <%= DateTime.new(2014, 3, 4) %>
-  # image_url: http://i.imgur.com/awh0Yii.jpg
-  # created_at: <%= DateTime.now() %>
-  # updated_at: <%= DateTime.now() %>
 
   test "editting hmd with incorrect state should raise validation exception" do
 

@@ -10,9 +10,3 @@ dk2_state:
   state: announced
   created_at: <%= DateTime.now() %>
   updated_at: <%= DateTime.now() %>
-
-# one: {}
-# # column: value
-# #
-# two: {}
-# #  column: value
