@@ -1,11 +1,9 @@
-.panel
-  .hmds.some{ :style => "background: url(#{hmd.image_url}) no-repeat center center; background-size: cover; height: 200px;" }
-    .row
-      .col-xs-12.hmd_info
-        %p= hmd.name
-        %p= hmd.announced_at.to_s(:long_ordinal)
-        %p= hmd.company
-        %p= hmd.state
-        %p
-          %a{ href: "/hmds/#{hmd.id}/edit"}
-            Edit
+.panel.hmds.some{ :style => "background: url(#{hmd.image_url}) no-repeat center center; background-size: cover;" }
+  .panel-body.hmd_info
+    %p= hmd.name
+    %p= hmd.announced_at.to_s(:long_ordinal)
+    %p= hmd.company
+    %p= hmd.state
+    %p
+      %a{ href: "/hmds/#{hmd.id}/edit"}
+        Edit

@@ -4294,3 +4294,1289 @@ Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450
 
 
 Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-10 20:54:45 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-11 14:42:20 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (22.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000/hmds
+Completed 302 Found in 53ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 14:42:20 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (2.4ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (3.2ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (79.8ms)
+Completed 200 OK in 756ms (Views: 675.7ms | ActiveRecord: 52.0ms)
+
+
+Started GET "/assets/hmds.self-76a7b95337a711b12c8b51ba645cd01a5b4a01fb7f7ce7923587cd0e13a68666.css?body=1" for 127.0.0.1 at 2015-07-11 14:42:21 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 14:47:44 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (1.2ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (1.9ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/index.html.haml within layouts/application (18.1ms)
+Completed 200 OK in 324ms (Views: 310.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/hmds.self-76a7b95337a711b12c8b51ba645cd01a5b4a01fb7f7ce7923587cd0e13a68666.css?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 14:47:45 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 14:50:09 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.9ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (3.4ms)
+  Rendered hmds/_hmd.html.haml (0.3ms)
+  Rendered hmds/_hmd.html.haml (0.3ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/index.html.haml within layouts/application (26.4ms)
+Completed 200 OK in 2657ms (Views: 2639.5ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/assets/hmds.self-86d2c178ec781e88af1b3acecab416bebdab6cbcdd8c80ffcdefc0559345a210.css?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:12 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 14:50:39 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.5ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/index.html.haml within layouts/application (12.4ms)
+Completed 200 OK in 2163ms (Views: 2161.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-f5691127eff909eb71c3703b0cc2914c5d543144b512442a3c6b08e3d11b9e51.css?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 14:50:42 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 14:51:04 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.5ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.5ms)
+Completed 200 OK in 2082ms (Views: 2080.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-7389ba4f97a521bcc1a99ea5d9d089485196733ef95b9b1de12aa7d917764ddd.css?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:06 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 14:51:29 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.5ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.7ms)
+Completed 200 OK in 2056ms (Views: 2054.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-773818823fd3925f066352db5f89e50232b453a6c6afa28613edf3e8f8d5d520.css?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 14:51:31 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 14:52:25 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.4ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (3.0ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (12.9ms)
+Completed 200 OK in 1984ms (Views: 1982.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-979dd1a93bc89f9b41d8e5e8dfb6f63a9f8bb2cf3542d6e42bf9abb15fdb6f34.css?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 14:52:27 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:00:15 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.5ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.7ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (12.2ms)
+Completed 200 OK in 1996ms (Views: 1994.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-6291062bff3e4004e53921844e8503f55707c4bbe06a24133f298b655682ff46.css?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:17 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:00:32 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (1.3ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (2.1ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/index.html.haml within layouts/application (21.2ms)
+Completed 200 OK in 347ms (Views: 329.1ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/hmds.self-6291062bff3e4004e53921844e8503f55707c4bbe06a24133f298b655682ff46.css?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:00:33 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:00:57 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.4ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (10.9ms)
+Completed 200 OK in 2487ms (Views: 2485.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-a1604b36e81b4fe31a0cc5358249e00ea732a03ee816c64dd8d4156eaa23098e.css?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:00 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:01:36 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.5ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/index.html.haml within layouts/application (10.8ms)
+Completed 200 OK in 2344ms (Views: 2342.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-2e495730e0fb6b2227830154492a2ce0d33446377d9c9ce4ac4fb45104715502.css?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:01:39 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:03:24 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.4ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.2ms)
+Completed 200 OK in 2063ms (Views: 2061.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-39f884c6de71575cd78319bdddf8e93c879e93180eb325672a0e8c430eb13402.css?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:03:26 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:04:17 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.4ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/index.html.haml within layouts/application (12.3ms)
+Completed 200 OK in 2061ms (Views: 2059.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-61a0e31f32cd13bdb2ed9cf6c3bf155dece222d9a42aeaa92af6a6868884f81b.css?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:04:19 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:05:37 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.5ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.7ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.8ms)
+Completed 200 OK in 1918ms (Views: 1916.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-b404dbc08cd50f62836a9e48d8b9a01a29b45c0a5312e121c185f28ece0c5ea6.css?body=1" for 127.0.0.1 at 2015-07-11 15:05:38 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:38 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:05:39 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:07:31 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.4ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.7ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (10.7ms)
+Completed 200 OK in 1940ms (Views: 1938.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-a99b91d01320a311d0fdccc0634fe09533cb21dcf1dca5f021ef74162761f86c.css?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:33 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:07:53 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.5ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.7ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (12.4ms)
+Completed 200 OK in 2084ms (Views: 2081.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-38e8c30ce21f6df393192163ba924a39825b662bbbe9b8d2ba14c020bc904c10.css?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:07:55 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:08:15 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.5ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.8ms)
+Completed 200 OK in 1903ms (Views: 1901.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-5630a0e8e7f686558cd2d2dd2fb514bc12ad3fee240d9b8d5bbb34d625305e97.css?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:08:17 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:09:33 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.8ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (1.8ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.3ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/_hmd.html.haml (0.2ms)
+  Rendered hmds/index.html.haml within layouts/application (19.3ms)
+Completed 200 OK in 325ms (Views: 308.6ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/assets/hmds.self-5630a0e8e7f686558cd2d2dd2fb514bc12ad3fee240d9b8d5bbb34d625305e97.css?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/assets/application.self-8bb99f6bab2adb5c04e2f5197dbdf39d172636f86ffb4ab49964de3798023a98.css?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:09:34 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:14:51 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.4ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.9ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (12.5ms)
+Completed 200 OK in 2202ms (Views: 2200.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/assets/hmds.self-5630a0e8e7f686558cd2d2dd2fb514bc12ad3fee240d9b8d5bbb34d625305e97.css?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/assets/application.self-68c6ff48e1ebf8b88e2659930750442109d803bbb1a5ce057d826771dc9a0f44.css?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:14:53 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:15:11 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.4ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (10.2ms)
+Completed 200 OK in 2066ms (Views: 2065.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-5630a0e8e7f686558cd2d2dd2fb514bc12ad3fee240d9b8d5bbb34d625305e97.css?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:15:13 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.9ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (3.1ms)
+  Rendered hmds/_hmd.html.haml (0.3ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.3ms)
+  Rendered hmds/_hmd.html.haml (0.3ms)
+  Rendered hmds/index.html.haml within layouts/application (29.9ms)
+Completed 200 OK in 346ms (Views: 330.8ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/assets/hmds.self-5630a0e8e7f686558cd2d2dd2fb514bc12ad3fee240d9b8d5bbb34d625305e97.css?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:17:00 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:18:05 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.5ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.4ms)
+Completed 200 OK in 2337ms (Views: 2335.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-38e8c30ce21f6df393192163ba924a39825b662bbbe9b8d2ba14c020bc904c10.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:08 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:18:16 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.4ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.7ms)
+Completed 200 OK in 2128ms (Views: 2126.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-2728c506bab7879704a9b7396f263d48e04de3e67d54bc93914cfb374af23485.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:18 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:18:36 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.5ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/index.html.haml within layouts/application (12.4ms)
+Completed 200 OK in 2069ms (Views: 2067.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-aa2e249debd126f0fe09fe9d15c0304a0827a14931a8c33612ba98ed3c9b34f4.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:38 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.4ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.7ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (12.6ms)
+Completed 200 OK in 83ms (Views: 81.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/assets/hmds.self-aa2e249debd126f0fe09fe9d15c0304a0827a14931a8c33612ba98ed3c9b34f4.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:42 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.4ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (12.0ms)
+Completed 200 OK in 134ms (Views: 132.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-aa2e249debd126f0fe09fe9d15c0304a0827a14931a8c33612ba98ed3c9b34f4.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:44 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:18:53 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.4ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.2ms)
+Completed 200 OK in 2013ms (Views: 2011.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-18b0e8c2cbc01355ffc84829b5c97d80c04eb20f0f226cf0b0ba147e8865beb9.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:18:55 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:19:12 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.4ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (11.6ms)
+Completed 200 OK in 1970ms (Views: 1968.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/hmds.self-09e22b4a35aaba2c26975cb8f7f997237b797b97e48d811e30ffda5fd1a7a751.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:14 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:19:23 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.5ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (13.0ms)
+Completed 200 OK in 1930ms (Views: 1928.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-2fe47dba52775e99749299886fbd96fd2338994f8b2eb7621bf5827f63a4ad01.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:25 -0400
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-11 15:19:52 -0400
+Processing by HmdsController#index as HTML
+  [1m[36mHmd Load (0.5ms)[0m  [1mSELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc[0m
+  Rendered hmds/_hmd.html.haml (0.6ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.7ms)
+  Rendered hmds/_hmd.html.haml (0.5ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/_hmd.html.haml (0.4ms)
+  Rendered hmds/index.html.haml within layouts/application (12.4ms)
+Completed 200 OK in 1961ms (Views: 1959.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/hmds.self-821d4167f654d0d4e577741e0cfc0cfba8c85d6905a951448662ab5dfb951742.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/assets/application.self-bfc7b11d54343ab8545c811a5517e90c78ead84ee84a3a3a2e0f186895ec18c8.css?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/assets/hmds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-07-11 15:19:54 -0400
+
+
+Started GET "/hmds/3/edit" for 127.0.0.1 at 2015-07-11 15:20:07 -0400
+Processing by HmdsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mHmd Load (0.5ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  Rendered hmds/edit.html.haml within layouts/application (113.5ms)
+Completed 200 OK in 168ms (Views: 166.8ms | ActiveRecord: 0.5ms)
