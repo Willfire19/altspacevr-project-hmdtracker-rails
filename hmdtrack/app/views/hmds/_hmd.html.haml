@@ -1,9 +1,7 @@
 .panel.hmds.some{ :style => "background: url(#{hmd.image_url}) no-repeat center center; background-size: cover;" }
   .panel-body.hmd_info
     %p= hmd.name
-    %p= hmd.announced_at.to_s(:long_ordinal)
+    %p= "Announced At: #{hmd.announced_at.to_s(:long_ordinal)}"
     %p= hmd.company
-    %p= hmd.state
-    %p
-      %a{ href: "/hmds/#{hmd.id}/edit"}
-        Edit
+    %p= "Current State: #{hmd.hmd_states.last.state}"
+    %p= link_to "EDIT", edit_hmd_path(hmd), :class => "btn btn-default btn-primary"

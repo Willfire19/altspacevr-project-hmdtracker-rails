@@ -29,7 +29,7 @@ class Hmd < ActiveRecord::Base
   end
 
   def check_state
-    if @state != "announced" and @state != "dev_kit" and @state != "released"
+    if @state != "announced" and @state != "devkit" and @state != "released"
       errors.add(:base, "#{@state} is not a valid state")
       @state = previous_state
       return false

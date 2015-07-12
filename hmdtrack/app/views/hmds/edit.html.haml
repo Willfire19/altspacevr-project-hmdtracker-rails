@@ -1,27 +1,42 @@
-%table.hmds
-  %thead
-    %th
-      &nbsp;
-    %th
-      HMD Name
-    %th
-      Announced
-    %th
-      Company
-    %th
-      State
-  - @hmds.each do |hmd|
-    %tr
-      %td
-        %img{ width: 150, height: 100, src: hmd.image_url }
-      %td= hmd.name
-      %td= hmd.announced_at.to_s(:long_ordinal)
-      %td= hmd.company
+.row
+  .col-xs-12.col-sm-8.col-sm-offset-2
+    .panel
+      .panel-header.some{ style: "text-align: center;" }
+        %h1= @hmd.name
+      .panel-body
+        .row
+          .col-xs-12
+            %img.img-responsive.img-thumbnail{ src: @hmd.image_url }
+        .row
+          .col-xs-12
+            %h2= @hmd.company
+        .row
+          .col-xs-12
+            = form_for @hmd, :html => {:class => 'form-inline'} do |f|
+              .form-group
+                = f.select :state, [["Announced", "announced"], ["DevKit", "devkit"], ["Released", "released"]], {}, { :class => 'form-control' }
+                = f.submit "Update", class: "btn btn-large btn-primary"
+        %table.table
+          %thead
+            %th
+              State
+            %th
+              Date
+          - @hmd.hmd_states.each do |hmd_state|
+            %tr
+              %td= hmd_state.state
+              %td= hmd_state.updated_at
 
-      - if params[:id].to_i == hmd.id
-        %td
-          = form_for hmd do |f|
-            = f.select :state, [["Announced", "announced"], ["DevKit", "devkit"], ["Released", "released"]]
-            = f.submit "Update"
-      - else
-        %td= hmd.state
+/ = form_for @user, :html => {:class => 'x', 'data-bar' => 'baz'} do |f|
+
+/ <form class="form-inline">
+/   <div class="form-group">
+/     <label for="exampleInputName2">Name</label>
+/     <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+/   </div>
+/   <div class="form-group">
+/     <label for="exampleInputEmail2">Email</label>
+/     <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+/   </div>
+/   <button type="submit" class="btn btn-default">Send invitation</button>
+/ </form>

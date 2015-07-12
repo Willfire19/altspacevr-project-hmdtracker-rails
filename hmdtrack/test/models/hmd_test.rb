@@ -27,12 +27,12 @@ class HmdTest < ActiveSupport::TestCase
     count = HmdState.count
 
     test_hmd = hmds(:dk2)
-    test_hmd.state = "dev_kit"
+    test_hmd.state = "devkit"
     test_hmd.save!
 
-    assert_equal "dev_kit", hmds(:dk2).state, "The state was not updated correctly"
+    assert_equal "devkit", hmds(:dk2).state, "The state was not updated correctly"
     assert_equal count+1, HmdState.count, "There was no state added to the HmdState table"
-    assert_equal "dev_kit", HmdState.where(["hmd_id = ?", test_hmd]).last.state
+    assert_equal "devkit", HmdState.where(["hmd_id = ?", test_hmd]).last.state
 
     count = HmdState.count
 
