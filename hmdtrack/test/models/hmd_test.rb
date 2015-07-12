@@ -47,10 +47,11 @@ class HmdTest < ActiveSupport::TestCase
 
   test "editting hmd with incorrect state should raise validation exception" do
 
-    test_hmd = Hmd.create( name: "Rad VR", company: "AngelTech", image_url: "https://i.imgur.com/rAfh8.jpg", announced_at: DateTime.now(), state: "announced" )
+    test_hmd = Hmd.new( name: "Rad VR", company: "AngelTech", image_url: "https://i.imgur.com/rAfh8.jpg", announced_at: DateTime.now() )
+    test_hmd.save
     count = HmdState.count
     previous_state = test_hmd.state
-    assert_raises(ActiveRecord::RecordInvalid) do
+    assert_raises(RuntimeError) do
       test_hmd.state = "completeley bogus state"
       test_hmd.save!
     end
@@ -66,10 +67,12 @@ class HmdTest < ActiveSupport::TestCase
 
   test "creating an hmd will have state as announced by default" do
     count = HmdState.count
-    test_hmd = Hmd.create!( name: "4D HEAD", company: "AngelTech", image_url: "https://i.imgur.com/VHPmc.jpg", announced_at: DateTime.now(), state: "announced" )
+    test_hmd = Hmd.new( name: "4D HEAD", company: "AngelTech", image_url: "https://i.imgur.com/VHPmc.jpg", announced_at: DateTime.now() )
+    test_hmd.save
 
     assert_equal count+1, HmdState.count, "Creating a hmd did not create a hmd state"
     assert_equal "announced", HmdState.where(["hmd_id = ?", test_hmd]).last.state, "The default was not applied"
+    assert_equal "announced", test_hmd.state
   end
 
 
