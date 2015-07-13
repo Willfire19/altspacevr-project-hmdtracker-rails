@@ -4,7 +4,8 @@ class HmdsController < ApplicationController
   end
 
   def edit
-    @hmds = Hmd.all.order("announced_at desc, name desc")
+    @hmd = Hmd.find(params[:id])
+    # @hmds = Hmd.all.order("announced_at desc, name desc")
   end
 
   def update

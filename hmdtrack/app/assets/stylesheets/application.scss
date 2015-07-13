@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootswatch/paper/variables";
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+body { 
+	padding-top: 60px;
+	margin: 0px;
+	overflow: hidden;
+  overflow-y: scroll;
+  background-color: grey;
+}
+
+@import "bootswatch/paper/bootswatch";
+
+// Whatever style files I need imported go under here

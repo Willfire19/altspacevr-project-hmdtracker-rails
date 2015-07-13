@@ -1,25 +1,4 @@
-%table.hmds
-  %thead
-    %th
-      &nbsp;
-    %th
-      HMD Name
-    %th
-      Announced
-    %th
-      Company
-    %th
-      State
-    %th
-      &nbsp;
-  - @hmds.each do |hmd|
-    %tr
-      %td
-        %img{ width: 150, height: 100, src: hmd.image_url }
-      %td= hmd.name
-      %td= hmd.announced_at.to_s(:long_ordinal)
-      %td= hmd.company
-      %td= hmd.state
-      %td
-        %a{ href: "/hmds/#{hmd.id}/edit"}
-          Edit
+.row
+  .col-xs-12.col-sm-8.col-sm-offset-2
+    - @hmds.each do |hmd|
+      = render 'hmd', :hmd => hmd

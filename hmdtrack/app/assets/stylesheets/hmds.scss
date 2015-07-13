@@ -1,12 +1,25 @@
-body {
-  background-color: black;
-  color: #cccccc;
-}
-
 .hmds {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   letter-spacing: .06em;
   line-height: 1.5;
+  height: 200px;
+  overflow: hidden;
+
+  .hmd_info {
+    height: 100%;
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0.8);
+    color: white;
+    display: none;
+  }
+  
+  &:hover {
+
+    .hmd_info {
+      display: block;
+      
+    }
+  }
 }
 
 .hmds th {
@@ -15,4 +28,8 @@ body {
 
 .hmds td {
   padding: 12px;
+}
+
+custom-select {
+  width: 200px;
 }
