@@ -30,24 +30,3 @@ module AuditedState
   	end
 
 end
-
-
-# module Auditable
-#   extend ActiveSupport::Concern
-
-#   included do
-#     has_many          :audits, as: :auditable
-
-#     after_create      :record_creation
-#     before_destroy    :record_deletion 
-#   end
-
-#   def record_creation
-#     Audit.record_created(self)
-#   end
-
-#   def record_deletion
-#     Audit.record_deletion(self)
-#   end
-
-# end
