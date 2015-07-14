@@ -1,4 +1,66 @@
 # Altspace Programming Project - Rails HMD Tracker
+## Joshua Angeley
+
+## Overview
+
+- This rails app incorporates the AuditedState. When a Hmd state is 'updated', the app will add a new row to the Hmd_state table rather than update the Hmd state attribute.
+
+- The state attribute in the Hmd table has been removed. Calling hmd.state now reflects the state value of the latest row inserted associated with the hmd.
+
+- There are six tests written in hmd_test.rb. I followed the Test Driven Development methodology to develop the auditing feature. They were really useful when refactoring the code from the individual models to the ruby concern.
+
+- This was the first time I have ever come across Ruby Metaprogramming, and while I've learned a lot, I was not able to implement it into this project. While the code has been refactored into audited_state.rb, the code remains tightly coupled, which means that the audit feature is not reusable. A pair programming session would be very helpful in developing this feature.
+
+- My enhancement for this project is a small redesign of the app. I've imported Bootstrap, a popular HTML and CSS framework, and Bootswatch, and styled skin for Bootstrap, to help me out.
+
+- This was also my first forway into HAML, although I have heard of it before this project. HAML is way cleaner than HTML
+
+- I got rid of the table on the index.html, and put each hmd into their own card. Hover of the card to get a peak of the stats of the hmd, and click 'EDIT' to update the state of the hmd.
+
+- The edit page of the hmd also does a good job of showing that the audit feature works correctly. Each state change that the hmd has gone through is listed.
+
+## Technical Details
+
+- The lastest official stable version of this application is held on the 'Official' git branch. The master branch is the forked branch that has not been updated at all. The 'AuditedState' branch is the development branch for the audit feature. The 'Design' branch is the development branch for the overall design feature. Make sure to checkout the Official branch to actually see the work done!
+
+- You have asked for a migration script to move the legacy state column from the hmd table to the hmd_state table. I have not made that script yet, and that is the next step on the list. Initially, I thought calling 'rake db:reset' would correctly populate the hmd_state table because of the way the audit feature was built. This is the audited_state.rb here:
+```
+module AuditedState
+  extend ActiveSupport::Concern
+
+  included do
+    after_create :create_new_state
+
+    has_many :hmd_states
+  end
+
+  def state=(new_state)
+    
+    if new_state != "announced" and new_state != "devkit" and new_state != "released"
+      raise "Validation Error: #{new_state} is not a valid state"
+    else
+      @new_hmd_state = self.hmd_states.build( state: new_state )
+      @new_hmd_state.save
+      @state = @new_hmd_state.state
+    end
+
+  end
+
+  def state
+    @state
+  end
+
+  private
+
+    def create_new_state
+      self.state = "announced"
+    end
+
+end
+```
+db:reset calls db:drop (which drops the entire database), then calls db:setup, which creates the database, runs all the migrations, then calls db:seed. When db:seed is called, it creates a hmd for each listing in seeds.rb. When an hmd is created, the create_new_state method is called, which then calls state=(new_state) with new_state being equal to "announced". So every hmd's state is "announced" by default.
+
+- I've been developing under the assumption that a newly created hmd will have "announced" by default. This has created a side effect of having Hmd.create() fail if the state is defined in the create method. For example, Hmd.create(state: "devkit") will fail because a new state will be appended to the hmd_state table before the hmd is created, which means the hmd.id would not be available yet.
 
 ## Instructions
 
