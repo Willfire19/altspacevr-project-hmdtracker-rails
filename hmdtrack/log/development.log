@@ -1,1 +1,35 @@
 
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-14 16:55:09 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000/hmds
+Completed 302 Found in 9ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-14 16:55:09 -0400
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000/hmds
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/hmds" for 127.0.0.1 at 2015-07-14 16:55:09 -0400
+Processing by HmdsController#index as HTML
+  [1m[35mHmd Load (0.7ms)[0m  SELECT "hmds".* FROM "hmds"  ORDER BY announced_at desc, name desc
+  [1m[36mHmdState Load (0.3ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE "hmd_states"."hmd_id" = $1  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m  [["hmd_id", 3]]
+  Rendered hmds/_hmd.html.haml (48.9ms)
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE "hmd_states"."hmd_id" = $1  ORDER BY "hmd_states"."id" DESC LIMIT 1  [["hmd_id", 6]]
+  Rendered hmds/_hmd.html.haml (1.5ms)
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE "hmd_states"."hmd_id" = $1  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m  [["hmd_id", 7]]
+  Rendered hmds/_hmd.html.haml (1.0ms)
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE "hmd_states"."hmd_id" = $1  ORDER BY "hmd_states"."id" DESC LIMIT 1  [["hmd_id", 5]]
+  Rendered hmds/_hmd.html.haml (1.0ms)
+  [1m[36mHmdState Load (0.1ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE "hmd_states"."hmd_id" = $1  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m  [["hmd_id", 4]]
+  Rendered hmds/_hmd.html.haml (1.1ms)
+  [1m[35mHmdState Load (0.2ms)[0m  SELECT  "hmd_states".* FROM "hmd_states" WHERE "hmd_states"."hmd_id" = $1  ORDER BY "hmd_states"."id" DESC LIMIT 1  [["hmd_id", 2]]
+  Rendered hmds/_hmd.html.haml (1.5ms)
+  [1m[36mHmdState Load (0.2ms)[0m  [1mSELECT  "hmd_states".* FROM "hmd_states" WHERE "hmd_states"."hmd_id" = $1  ORDER BY "hmd_states"."id" DESC LIMIT 1[0m  [["hmd_id", 1]]
+  Rendered hmds/_hmd.html.haml (1.4ms)
+  Rendered hmds/index.html.haml within layouts/application (72.2ms)
+Completed 200 OK in 356ms (Views: 346.1ms | ActiveRecord: 5.0ms)
